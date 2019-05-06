@@ -26,7 +26,8 @@ while True:
     1 - Para adicionar um professor(a);
     2 - Para atualizar um professor(a);
     3 - Para deletar um professor(a);
-    4 - Para consultar lista de professores.\n""")
+    4 - Para consultar lista de professores.
+    5 - Para gravar.\n""")
 
         OP = int(input("::: "))
         print("="*80+"\n")
@@ -46,6 +47,9 @@ while True:
         if OP == 4:
             list_prof()
 
+        if OP == 5:
+            grava_prof()
+
 # ---------------------------------------------------------------------------------
             
     if OM == 2:
@@ -55,7 +59,8 @@ while True:
     1 - Para adicionar um aluno(a);
     2 - Para atualizar um aluno(a);
     3 - Para deletar um aluno(a);
-    4 - Para consultar lista de alunos.\n""")
+    4 - Para consultar lista de alunos.
+    5 - Para gravar.\n""")
 
         OA = int(input("::: "))
         print("="*80+"\n")
@@ -74,6 +79,9 @@ while True:
 
         if OA == 4:
             list_aluno()
+
+        if OA == 5:
+            grava_aluno()
             
 # ---------------------------------------------------------------------------------
             
@@ -84,7 +92,8 @@ while True:
     1 - Para adicionar uma disciplina;
     2 - Para atualizar uma disciplina;
     3 - Para deletar uma disciplina;
-    4 - Para consultar lista de disciplinas.\n""")
+    4 - Para consultar lista de disciplinas.
+    5 - Para gravar.\n""")
 
         OD = int(input("::: "))
         print("="*80+"\n")
@@ -103,6 +112,9 @@ while True:
 
         if OD == 4:
             list_disc()
+            
+        if OD == 5:
+            grava_disc()
 
 # ---------------------------------------------------------------------------------            
 
@@ -113,7 +125,8 @@ while True:
     1 - Para adicionar uma turma;
     2 - Para atualizar uma turma;
     3 - Para deletar uma turma;
-    4 - Para consultar lista de turmas.\n""")
+    4 - Para consultar lista de turmas.
+    5 - Para gravar.\n""")
 
         OT = int(input("::: "))
         print("="*80+"\n")
@@ -133,16 +146,18 @@ while True:
         if OT == 4:
             list_turma()
 
+        if OT == 5:
+            grava_turma()
+
 # ---------------------------------------------------------------------------------
 
     if OM == 5:
         print("""            : RELATÓRIOS :\n
     Escolha uma das opções a seguir:\n
     0 - Para retornar ao menu principal;
-    1 - Para adicionar um aluno(a);
-    2 - Para atualizar um aluno(a);
-    3 - Para deletar um aluno(a);
-    4 - Para consultar lista de alunos.\n""")
+    1 - Para consultar a ATA de exercícios;
+    2 - Para consultar a lista de turma por professor;
+    3 - Para consultar a lista de disciplinas por aluno;\n""")
 
         OR = int(input("::: "))
         print("="*80+"\n")

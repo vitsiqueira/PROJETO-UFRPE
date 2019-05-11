@@ -1,4 +1,4 @@
-import inputs, professores, alunos
+import inputs, professores, alunos, disciplinas
 
 # ********* MENUS *********
 
@@ -164,7 +164,7 @@ def disc_menu():
     3 - Para deletar uma disciplina;
     4 - Para consultar lista de disciplinas.
     5 - Para gravar disciplina.
-    6 - Para ler a lista de disciplinas gravadas.\n""") #falta fazer o if.
+    6 - Para ler a lista de disciplinas gravadas.\n""") #falta fazer o if. = resolvido
 
     while True:
 
@@ -176,22 +176,59 @@ def disc_menu():
             continue
 
         if OD == 0:
-            break;
+            menu_principal()
             
         if OD == 1:
-            new_disc()
+            nd = inputs.nome_disc()
+            cd = inputs.cod_disc()
+            if disciplinas.new_disc(nd, cd) == True:
+                print(" ")
+                print("Sucesso! Disciplina adicionada.\n")
+                print("="*70+"\n")
+                print(" ")
+            disc_menu()
             
         if OD == 2:
-            att_disc()
+            cd = inputs.cod_disc()
+            if disciplinas.att_disc(cd) == True:
+                print(" ")
+                print("Sucesso! Disciplina atualizada.\n")
+                print("="*70+"\n")
+                print(" ")
+                disc_menu()
+            else:
+                print(" ")
+                print("Erro! Disciplina não cadastrada.\n")
+                print("="*70+"\n")
+                print(" ")
+                disc_menu()
 
         if OD == 3:
-            del_disc()
+            cd = inputs.cod_disc()
+            if disciplinas.apaga_disc(cd) == True:
+                print(" ")
+                print("Sucesso! Disciplina deletado.\n")
+                print("="*70+"\n")
+                print(" ")
+            else:
+                print(" ")
+                print("Erro! Disciplina não cadastrada.\n")
+                print("="*70+"\n")
+                print(" ")
+            disc_menu()
 
         if OD == 4:
-            list_disc()
+            disciplinas.list_disc()
+            disc_menu()
             
         if OD == 5:
-            grava_disc()
+            disciplinas.grava_disc()
+            disc_menu()
+
+        if OD == 6:
+            disciplinas.lê_arquivo_disc()
+            print("="*70+"\n")
+            disc_menu()
 
 # ::::
 
@@ -225,7 +262,7 @@ def turma_menu():
             att_turma()
 
         if OT == 3:
-            del_turma()
+            apaga_turma()
 
         if OT == 4:
             list_turma()

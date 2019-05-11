@@ -10,10 +10,6 @@ def new_prof(np, cp, dp):
             return False
     professores.append([np, cp, dp])
     return True
-    print(" ")
-    print("Sucesso! Professor adicionado.\n")
-    print("="*70+"\n")
-    print(" ")
 
 def att_prof(cp):
     global professores
@@ -25,25 +21,14 @@ def att_prof(cp):
             professores[a][0] = nn_prof
             professores[a][1] = nc_prof
             professores[a][2] = nd_prof
-            print(" ")
-            print("Sucesso! Professor atualizado.\n")
-            print("="*70+"\n")
-            print(" ")
-        else:
-            print(" ")
-            print("Falha! Professor não encontrado.\n")
-            print("="*70+"\n")
-            print(" ")
+            return True
 
 def apaga_prof(cp):
     global professores
     for a, b in enumerate(professores):
         if b[1] == cp:
             del professores[a]
-            print(" ")
-            print("Sucesso! Professor deletado.\n")
-            print("="*70+"\n")
-            print(" ")
+            return True
 
 def list_prof():
     global professores
@@ -51,7 +36,7 @@ def list_prof():
     print(" ")
     print("{0:10} {1:45} {2:13} {3:20}".format("Número", "Nome", "CPF", "Departamento"))
     for a, b in enumerate(professores):
-        print("{0:0>5}    {1:45} {2:13} {3:20}".format(str(a+1), b[0], b[1], b[2])) #formatar direitinho os espaçamentos.
+        print("{0:0>5}      {1:45} {2:13} {3:20}".format(str(a+1), b[0], b[1], b[2])) #formatar direitinho os espaçamentos.
     print("="*70+"\n")
 
 def grava_prof():
@@ -64,7 +49,7 @@ def grava_prof():
 
 def lê_arquivo_prof(): #resolver bug do começo do arquivo.
     global professores
-    arqv_prof = open("professores.txt", "r")
+    arqv_prof = open("professores.txt", "r", encoding = "utf-8")
     for v in arqv_prof.readlines():
         print(v)
     arqv_prof.close()

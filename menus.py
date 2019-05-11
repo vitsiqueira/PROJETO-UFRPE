@@ -1,9 +1,6 @@
-import inputs, professores
+import inputs, professores, alunos
 
 # ********* MENUS *********
-
-
-
 
 def prof_menu():
     print("""       : DADOS DOS PROFESSORES :\n
@@ -19,7 +16,7 @@ def prof_menu():
     while True:
 
         OP = int(input("::: "))
-        print("="*80+"\n")
+        print("="*70+"\n")
 
         if OP > 6 or OP < 0:
             print("Tente novamente.")
@@ -80,7 +77,6 @@ def prof_menu():
             print("="*70+"\n")
             prof_menu() #retornar.
 
-# ::::
 
 def aluno_menu():
     print("""         : DADOS DOS ALUNOS :\n
@@ -91,12 +87,12 @@ def aluno_menu():
     3 - Para deletar um aluno(a);
     4 - Para consultar lista de alunos.
     5 - Para gravar aluno.
-    6 - Para ler a lista de alunos gravada.\n""") #falta fazer o if
+    6 - Para ler a lista de alunos gravada.\n""")
 
     while True:
 
         OA = int(input("::: "))
-        print("="*80+"\n")
+        print("="*70+"\n")
 
         if OA > 6 or OA < 0:
             print("Tente novamente.")
@@ -122,16 +118,17 @@ def aluno_menu():
                 print("Sucesso! Aluno atualizado.\n")
                 print("="*70+"\n")
                 print(" ")
+                aluno_menu()
             else:
                 print(" ")
                 print("Erro! Aluno não cadastrado.\n")
                 print("="*70+"\n")
                 print(" ")
-            aluno_menu()
+                aluno_menu()
 
         if OA == 3:
             ca = inputs.cpf_aluno()
-            if alunos.del_aluno(ca) == True:
+            if alunos.apaga_aluno(ca) == True:
                 print(" ")
                 print("Sucesso! Aluno deletado.\n")
                 print("="*70+"\n")
@@ -151,6 +148,11 @@ def aluno_menu():
             alunos.grava_aluno()
             aluno_menu()
 
+        if OA == 6:
+            alunos.lê_arquivo_aluno()
+            print("="*70+"\n")
+            aluno_menu()
+
 # ::::
 
 def disc_menu():
@@ -167,7 +169,7 @@ def disc_menu():
     while True:
 
         OD = int(input("::: "))
-        print("="*80+"\n")
+        print("="*70+"\n")
 
         if OD > 6 or OD < 0:
             print("Tente novamente.")
@@ -207,7 +209,7 @@ def turma_menu():
     while True:
 
         OT = int(input("::: "))
-        print("="*80+"\n")
+        print("="*70+"\n")
 
         if OT > 6 or OT < 0:
             print("Tente novamente.")
@@ -244,7 +246,7 @@ def rela_menu():
     while True:
 
         OR = int(input("::: "))
-        print("="*80+"\n")
+        print("="*70+"\n")
 
         if OR > 3 or OR < 0:
             print("Tente novamente.")
@@ -263,7 +265,7 @@ def rela_menu():
         3 - Para retornar ao menu de relatórios.\n""")
 
             TPO = int(input("::: "))
-            print("="*80+"\n")
+            print("="*70+"\n")
 
             if TPO > 3 or TPO < 0:
                 print("Tente novamente.")
@@ -285,7 +287,7 @@ def rela_menu():
         3 - Para retornar ao menu de relatórios.\n""")
 
             DAO = int(input("::: "))
-            print("="*80+"\n")
+            print("="*70+"\n")
 
             if DAO > 3 or DAO < 0:
                 print("Tente novamente.")
@@ -317,7 +319,7 @@ while True:
     menu_principal()
     
     OM = int(input("::: "))
-    print("="*80+"\n")
+    print("="*70+"\n")
 
     if OM > 5 or OM < 0:
         print("Tente novamente.")

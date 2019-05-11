@@ -1,16 +1,16 @@
-# ********************************** INPUTS - PROJETO ***************************************
+# ********* INPUTS *********
 
 def nome_prof():
-    return (input("Nome do professor: "))
+    return (input("Nome completo do professor: ")).upper()
 
 def cpf_prof():
     return (input("CPF do professor: "))
 
 def dep_prof():
-    return (input("Departamento: "))
+    return (input("Departamento: ")).upper()
 
 def nome_aluno():
-    return (input("Nomedo aluno: "))
+    return (input("Nome completo do aluno: ")).upper()
 
 def cpf_aluno():
     return (input("CPF do aluno: "))
@@ -19,7 +19,7 @@ def cod_disc():
     return (input("Código da disciplina: "))
 
 def nome_disc():
-    return (input("Nome da disciplina: "))
+    return (input("Nome da disciplina: ")).upper()
 
 def cod_turma():
     return (input("Código da turma: "))

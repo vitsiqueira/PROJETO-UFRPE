@@ -1,102 +1,177 @@
-# ********************************** MENUS - PROJETO ***************************************
+import inputs, professores
 
-while True:
-    print("::: Bem vindo(a)!")
-    print(" ")
-    print("""    Escolha uma das opções a seguir:\n
-    0 - Para sair;
-    1 - Para dados dos professores;
-    2 - Para dados dos alunos;
-    3 - Para dados das disciplinas;
-    4 - Para dados das turmas;
-    5 - Para relatórios.\n""")
+# ********* MENUS *********
 
-    OM = int(input("::: "))
-    print("="*80+"\n")
 
-    if OM == 0:
-        break;
 
-# ---------------------------------------------------------------------------------    
 
-    if OM == 1:
-        print("""       : DADOS DOS PROFESSORES :\n
+def prof_menu():
+    print("""       : DADOS DOS PROFESSORES :\n
     Escolha uma das opções a seguir:\n
     0 - Para retornar ao menu principal;
     1 - Para adicionar um professor(a);
     2 - Para atualizar um professor(a);
     3 - Para deletar um professor(a);
     4 - Para consultar lista de professores.
-    5 - Para gravar.\n""")
+    5 - Para gravar professor.
+    6 - Para ler a lista de professores gravados.\n""")
+
+    while True:
 
         OP = int(input("::: "))
         print("="*80+"\n")
 
+        if OP > 6 or OP < 0:
+            print("Tente novamente.")
+            continue
+
         if OP == 0:
-            break;
+            menu_principal()
 
         if OP == 1:
-            new_prof()
+            np = inputs.nome_prof() #adicionar nome do professor.
+            cp = inputs.cpf_prof() #adicionar cpf do professor.
+            dp = inputs.dep_prof() #adicionar departamento.
+            if professores.new_prof(np, cp, dp) == True: # se a operação for verdadeira.
+                print(" ")
+                print("Sucesso! Professor adicionado.\n")
+                print("="*70+"\n")
+                print(" ")
+            prof_menu()         #retornar para o menu do professor.
 
         if OP == 2:
-            att_prof()
+            cp = inputs.cpf_prof() # pede cpf do professor que quer atualizar.
+            if professores.att_prof(cp) == True: # se a operação for verdadeira.
+                print(" ")
+                print("Sucesso! Professor atualizado.\n")
+                print("="*70+"\n")
+                print(" ")
+            else:
+                print(" ")
+                print("Erro! Professor não cadastrado.\n")
+                print("="*70+"\n")
+                print(" ")
+            prof_menu() #retornar.
 
         if OP == 3:
-            del_prof()
+            cp = inputs.cpf_prof() #pede cpf do professor que quer apagar.
+            if professores.apaga_prof(cp) == True: # se a operação for verdadeira.
+                print(" ")
+                print("Sucesso! Professor deletado.\n")
+                print("="*70+"\n")
+                print(" ")
+            else:
+                print(" ")
+                print("Erro! Professor não cadastrado.\n")
+                print("="*70+"\n")
+                print(" ")
+            prof_menu() #retornar.
 
         if OP == 4:
-            list_prof()
+            professores.list_prof() #chama a função da lista de professores.
+            prof_menu() #retornar.
 
         if OP == 5:
-            grava_prof()
+            professores.grava_prof() #chama a função de gravar professor.
+            prof_menu() #retornar.
 
-# ---------------------------------------------------------------------------------
-            
-    if OM == 2:
-        print("""         : DADOS DOS ALUNOS :\n
+        if OP == 6:
+            professores.lê_arquivo_prof() #chama a função de ler arquivo.
+            print("="*70+"\n")
+            prof_menu() #retornar.
+
+# ::::
+
+def aluno_menu():
+    print("""         : DADOS DOS ALUNOS :\n
     Escolha uma das opções a seguir:\n
     0 - Para retornar ao menu principal;
     1 - Para adicionar um aluno(a);
     2 - Para atualizar um aluno(a);
     3 - Para deletar um aluno(a);
     4 - Para consultar lista de alunos.
-    5 - Para gravar.\n""")
+    5 - Para gravar aluno.
+    6 - Para ler a lista de alunos gravada.\n""") #falta fazer o if
+
+    while True:
 
         OA = int(input("::: "))
         print("="*80+"\n")
 
+        if OA > 6 or OA < 0:
+            print("Tente novamente.")
+            continue
+
         if OA == 0:
-            break;
+            menu_principal()
             
         if OA == 1:
-            new_aluno()
+            na = inputs.nome_aluno()
+            ca = inputs.cpf_aluno()
+            if alunos.new_aluno(na, ca) == True:
+                print(" ")
+                print("Sucesso! Aluno adicionado.\n")
+                print("="*70+"\n")
+                print(" ")
+            aluno_menu()
             
         if OA == 2:
-            att_aluno()
+            ca = inputs.cpf_aluno()
+            if alunos.att_aluno(ca) == True:
+                print(" ")
+                print("Sucesso! Aluno atualizado.\n")
+                print("="*70+"\n")
+                print(" ")
+            else:
+                print(" ")
+                print("Erro! Aluno não cadastrado.\n")
+                print("="*70+"\n")
+                print(" ")
+            aluno_menu()
 
         if OA == 3:
-            del_aluno()
+            ca = inputs.cpf_aluno()
+            if alunos.del_aluno(ca) == True:
+                print(" ")
+                print("Sucesso! Aluno deletado.\n")
+                print("="*70+"\n")
+                print(" ")
+            else:
+                print(" ")
+                print("Erro! Aluno não cadastrado.\n")
+                print("="*70+"\n")
+                print(" ")
+            aluno_menu()
 
         if OA == 4:
-            list_aluno()
+            alunos.list_aluno()
+            aluno_menu()
 
         if OA == 5:
-            grava_aluno()
-            
-# ---------------------------------------------------------------------------------
-            
-    if OM == 3:
-        print("""       : DADOS DAS DISCIPLINAS :\n
+            alunos.grava_aluno()
+            aluno_menu()
+
+# ::::
+
+def disc_menu():
+    print("""       : DADOS DAS DISCIPLINAS :\n
     Escolha uma das opções a seguir:\n
     0 - Para retornar ao menu principal;
     1 - Para adicionar uma disciplina;
     2 - Para atualizar uma disciplina;
     3 - Para deletar uma disciplina;
     4 - Para consultar lista de disciplinas.
-    5 - Para gravar.\n""")
+    5 - Para gravar disciplina.
+    6 - Para ler a lista de disciplinas gravadas.\n""") #falta fazer o if.
+
+    while True:
 
         OD = int(input("::: "))
         print("="*80+"\n")
+
+        if OD > 6 or OD < 0:
+            print("Tente novamente.")
+            continue
 
         if OD == 0:
             break;
@@ -116,20 +191,27 @@ while True:
         if OD == 5:
             grava_disc()
 
-# ---------------------------------------------------------------------------------            
+# ::::
 
-    if OM == 4:
-        print("""         : DADOS DAS TURMAS :\n
+def turma_menu():
+    print("""         : DADOS DAS TURMAS :\n
     Escolha uma das opções a seguir:\n
     0 - Para retornar ao menu principal;
     1 - Para adicionar uma turma;
     2 - Para atualizar uma turma;
     3 - Para deletar uma turma;
     4 - Para consultar lista de turmas.
-    5 - Para gravar.\n""")
+    5 - Para gravar turma.
+    6 - Para ler a lista de turmas gravadas.\n""") #falta fazer o if
+
+    while True:
 
         OT = int(input("::: "))
         print("="*80+"\n")
+
+        if OT > 6 or OT < 0:
+            print("Tente novamente.")
+            continue
 
         if OT == 0:
             break;
@@ -149,18 +231,24 @@ while True:
         if OT == 5:
             grava_turma()
 
-# ---------------------------------------------------------------------------------
+# ::::
 
-    if OM == 5:
-        print("""            : RELATÓRIOS :\n
+def rela_menu():
+    print("""            : RELATÓRIOS :\n
     Escolha uma das opções a seguir:\n
     0 - Para retornar ao menu principal;
     1 - Para consultar a ATA de exercícios;
     2 - Para consultar a lista de turma por professor;
     3 - Para consultar a lista de disciplinas por aluno;\n""")
 
+    while True:
+
         OR = int(input("::: "))
         print("="*80+"\n")
+
+        if OR > 3 or OR < 0:
+            print("Tente novamente.")
+            continue
 
         if OR == 0:
             break;
@@ -177,6 +265,10 @@ while True:
             TPO = int(input("::: "))
             print("="*80+"\n")
 
+            if TPO > 3 or TPO < 0:
+                print("Tente novamente.")
+                continue
+
             if TPO == 1:
                 tpo_todas()
 
@@ -184,7 +276,7 @@ while True:
                 top_psem()
 
             if TPO == 3:
-                break;
+                rela_menu()
 
         if OR == 3:
             print("""              : DISCIPLINAS POR ALUNO :\n
@@ -195,6 +287,10 @@ while True:
             DAO = int(input("::: "))
             print("="*80+"\n")
 
+            if DAO > 3 or DAO < 0:
+                print("Tente novamente.")
+                continue
+
             if DAO == 1:
                 dao_todas()
 
@@ -202,7 +298,45 @@ while True:
                 dao_psem()
 
             if DAO == 3:
-                break;
+                rela_menu()
 
 
+def menu_principal():
+    print("::: Bem vindo(a)!")
+    print(" ")
+    print("""    Escolha uma das opções a seguir:\n
+    0 - Para sair;
+    1 - Para dados dos professores;
+    2 - Para dados dos alunos;
+    3 - Para dados das disciplinas;
+    4 - Para dados das turmas;
+    5 - Para relatórios.\n""")
 
+
+while True:
+    menu_principal()
+    
+    OM = int(input("::: "))
+    print("="*80+"\n")
+
+    if OM > 5 or OM < 0:
+        print("Tente novamente.")
+        continue
+
+    if OM == 0:
+        break;
+ 
+    if OM == 1:
+        prof_menu()
+            
+    if OM == 2:
+        aluno_menu()
+                        
+    if OM == 3:
+        disc_menu()          
+
+    if OM == 4:
+        turma_menu()
+
+    if OM == 5:
+        rela_menu()

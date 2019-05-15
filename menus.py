@@ -80,6 +80,7 @@ def prof_menu():
 
         if OP == 0:
             menu_principal()
+            
 
 
 def aluno_menu():
@@ -157,6 +158,7 @@ def aluno_menu():
         if OA == 0:
             menu_principal()
             
+            
 # ::::
 
 def disc_menu():
@@ -233,7 +235,7 @@ def disc_menu():
 
         if OD == 0:
             menu_principal()
-            continue
+            
 
 # ::::
 
@@ -247,8 +249,7 @@ def turma_menu():
     4 - Para consultar lista de turmas.
     5 - Para gravar turma.
     6 - Para ler a lista de turmas gravadas.
-    7 - Para adicionar alunos.
-    8 - Para apagar alunos.\n""") #falta fazer o if
+    7 - Para ver a ATA de exercícios.\n""") #falta fazer o if
 
     while True:
 
@@ -313,81 +314,17 @@ def turma_menu():
             print("="*70+"\n")
             turma_menu()
 
+        if OT == 7:
+            turmas.ata()
+            print("="*70+"\n")
+            turma_menu()
+
         if OT == 0:
             menu_principal()
-            continue
+            
             
 
 # ::::
-
-def rela_menu():
-    print("""            : RELATÓRIOS :\n
-    Escolha uma das opções a seguir:\n
-    0 - Para retornar ao menu principal;
-    1 - Para consultar a ATA de exercícios;
-    2 - Para consultar a lista de turma por professor;
-    3 - Para consultar a lista de disciplinas por aluno;\n""")
-
-    while True:
-
-        OR = int(input("::: "))
-        print("="*70+"\n")
-
-        if OR > 3 or OR < 0:
-            print("Tente novamente.")
-            continue
-
-        if OR == 0:
-            break;
-            
-        if OR == 1:
-            turmas.ata()
-            rela_menu()
-            
-        if OR == 2:
-            print("""              : TURMAS POR PROFESSOR :\n
-        1 - Para relatório de todas as turmas;
-        2 - Para relatório de turmas por semestre;
-        3 - Para retornar ao menu de relatórios.\n""")
-
-            TPO = int(input("::: "))
-            print("="*70+"\n")
-
-            if TPO > 3 or TPO < 0:
-                print("Tente novamente.")
-                continue
-
-            if TPO == 1:
-                tpo_todas()
-
-            if TPO == 2:
-                top_psem()
-
-            if TPO == 3:
-                rela_menu()
-
-        if OR == 3:
-            print("""              : DISCIPLINAS POR ALUNO :\n
-        1 - Para relatório de todas as turmas;
-        2 - Para relatório de turmas por semestre.
-        3 - Para retornar ao menu de relatórios.\n""")
-
-            DAO = int(input("::: "))
-            print("="*70+"\n")
-
-            if DAO > 3 or DAO < 0:
-                print("Tente novamente.")
-                continue
-
-            if DAO == 1:
-                dao_todas()
-
-            if DAO == 2:
-                dao_psem()
-
-            if DAO == 3:
-                rela_menu()
-
 
 def menu_principal():
     print("::: Bem vindo(a)!")
@@ -401,30 +338,28 @@ def menu_principal():
     5 - Para relatórios.\n""")
 
 
-while True:
-    menu_principal()
-    
-    OM = int(input("::: "))
-    print("="*70+"\n")
+    while True:
+        OM = int(input("::: "))
+        print("="*70+"\n")
 
-    if OM > 5 or OM < 0:
-        print("Tente novamente.")
-        continue
+        if OM > 5 or OM < 0:
+            print("Tente novamente.")
+            continue
 
-    if OM == 0:
-        exit()
+        if OM == 0:
+            exit()
  
-    if OM == 1:
-        prof_menu()
+        if OM == 1:
+            prof_menu()
             
-    if OM == 2:
-        aluno_menu()
+        if OM == 2:
+            aluno_menu()
                         
-    if OM == 3:
-        disc_menu()          
+        if OM == 3:
+            disc_menu()          
 
-    if OM == 4:
-        turma_menu()
+        if OM == 4:
+            turma_menu()
 
-    if OM == 5:
-        rela_menu()
+        if OM == 5:
+            rela_menu()

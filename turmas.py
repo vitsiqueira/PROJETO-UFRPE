@@ -66,11 +66,21 @@ def ata():
     global turmas
     coddisc = inputs.cod_disc()
     codturm = inputs.cod_turma()
+    nomealuno = inputs.nome_aluno()
 
     for v in turmas:
         if codturm == v[0] and coddisc == v[2]:
-            print("Período: {}".format(v[1]))
-            print("Código/Turma: {}".formar(v[0]))
-            print("Código/Disciplina: {}".format(v[2]))
-            print("CPF do professor: {}".formar(v[3]))
-            print("CPF do aluno: {}".format(v[4]))
+            print("""
+============================================================================
+Cód. Disciplina: {}
+============================================================================
+Cód. Turma: {}                Período: {}
+============================================================================
+CPF/Professor: {}
+============================================================================
+Aluno(a): {}            | CPF: {}
+Nota: ____________   Assinatura: ___________________________________________
+============================================================================
+""".format(v[2], v[0], v[1], v[3], nomealuno, v[4]))
+
+            

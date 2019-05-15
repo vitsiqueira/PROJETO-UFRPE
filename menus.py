@@ -1,4 +1,8 @@
-import inputs, professores, alunos, disciplinas
+import inputs
+import professores
+import alunos
+import disciplinas
+import turmas
 
 # ********* MENUS *********
 
@@ -21,9 +25,6 @@ def prof_menu():
         if OP > 6 or OP < 0:
             print("Tente novamente.")
             continue
-
-        if OP == 0:
-            menu_principal()
 
         if OP == 1:
             np = inputs.nome_prof() #adicionar nome do professor.
@@ -77,6 +78,9 @@ def prof_menu():
             print("="*70+"\n")
             prof_menu() #retornar.
 
+        if OP == 0:
+            menu_principal()
+
 
 def aluno_menu():
     print("""         : DADOS DOS ALUNOS :\n
@@ -97,9 +101,6 @@ def aluno_menu():
         if OA > 6 or OA < 0:
             print("Tente novamente.")
             continue
-
-        if OA == 0:
-            menu_principal()
             
         if OA == 1:
             na = inputs.nome_aluno()
@@ -153,6 +154,9 @@ def aluno_menu():
             print("="*70+"\n")
             aluno_menu()
 
+        if OA == 0:
+            menu_principal()
+            
 # ::::
 
 def disc_menu():
@@ -174,9 +178,6 @@ def disc_menu():
         if OD > 6 or OD < 0:
             print("Tente novamente.")
             continue
-
-        if OD == 0:
-            menu_principal()
             
         if OD == 1:
             nd = inputs.nome_disc()
@@ -207,7 +208,7 @@ def disc_menu():
             cd = inputs.cod_disc()
             if disciplinas.apaga_disc(cd) == True:
                 print(" ")
-                print("Sucesso! Disciplina deletado.\n")
+                print("Sucesso! Disciplina deletada.\n")
                 print("="*70+"\n")
                 print(" ")
             else:
@@ -230,6 +231,10 @@ def disc_menu():
             print("="*70+"\n")
             disc_menu()
 
+        if OD == 0:
+            menu_principal()
+            continue
+
 # ::::
 
 def turma_menu():
@@ -241,34 +246,77 @@ def turma_menu():
     3 - Para deletar uma turma;
     4 - Para consultar lista de turmas.
     5 - Para gravar turma.
-    6 - Para ler a lista de turmas gravadas.\n""") #falta fazer o if
+    6 - Para ler a lista de turmas gravadas.
+    7 - Para adicionar alunos.
+    8 - Para apagar alunos.\n""") #falta fazer o if
 
     while True:
 
         OT = int(input("::: "))
         print("="*70+"\n")
 
-        if OT > 6 or OT < 0:
+        if OT > 8 or OT < 0:
             print("Tente novamente.")
             continue
-
-        if OT == 0:
-            break;
             
         if OT == 1:
-            new_turma()
+            ct = inputs.cod_turma()
+            pt = inputs.peri_turma()
+            cdd = inputs.cod_disc()
+            cpp = inputs.cpf_prof()
+            caa = inputs.cpf_aluno()
+            if turmas.new_turma(ct, pt, cdd, cpp, caa) == True:
+                print(" ")
+                print("Sucesso! Turma adicionada.\n")
+                print("="*70+"\n")
+                print(" ")
+            turma_menu()
             
         if OT == 2:
-            att_turma()
+            ct = inputs.cod_turma()
+            if turmas.att_turma(ct) == True:
+                print(" ")
+                print("Sucesso! Turma atualizada.\n")
+                print("="*70+"\n")
+                print(" ")
+            else:
+                print(" ")
+                print("Erro! Turma não cadastrada.\n")
+                print("="*70+"\n")
+                print(" ")
+            turma_menu()
 
         if OT == 3:
-            apaga_turma()
+            ct = inputs.cod_turma()
+            if turmas.apaga_turma(ct) == True:
+                print(" ")
+                print("Sucesso! Turma deletada.\n")
+                print("="*70+"\n")
+                print(" ")
+            else:
+                print(" ")
+                print("Erro! Turma não cadastrada.\n")
+                print("="*70+"\n")
+                print(" ")
+            turma_menu()
 
         if OT == 4:
-            list_turma()
+            turmas.list_turma()
+            turma_menu()
 
         if OT == 5:
-            grava_turma()
+            turmas.grava_turma()
+            turma_menu()
+
+        if OT == 6:
+            turmas.lê_arquivo_turma()
+            print("="*70+"\n")
+            turma_menu()
+
+        if OT == 0:
+            menu_principal()
+            continue
+            
 
 # ::::
 
@@ -293,7 +341,8 @@ def rela_menu():
             break;
             
         if OR == 1:
-            ata()
+            turmas.ata()
+            rela_menu()
             
         if OR == 2:
             print("""              : TURMAS POR PROFESSOR :\n
@@ -363,7 +412,7 @@ while True:
         continue
 
     if OM == 0:
-        break;
+        exit()
  
     if OM == 1:
         prof_menu()

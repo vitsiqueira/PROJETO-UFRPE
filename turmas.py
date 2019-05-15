@@ -1,54 +1,24 @@
-import inputs, professores, alunos, disciplinas
+import inputs
 
 # ********* TURMAS *********
 
 turmas = []
-
-def checar_aluno(cp):
-    global professores, turmas
-    try:
-        arqv_prof = open("professores.txt", "r", encoding = "utf-8")
-        for cpfprof in professores.readlines():
-            cpfprof = cpfprof.split(" :: ")[1]
-            if cpfprof == cp:
-                return cpfprof
-        arqv_prof.close()
-
-def checar_aluno(ca):
-    global alunos, turmas
-    try:
-        arqv_aluno = open("alunos.txt", "r", encoding = "utf-8")
-        for cpfaluno in alunos.readlines():
-            cpfaluno = cpfaluno.split(" :: ")[1]
-            if cpfaluno == ca:
-                return cpfaluno
-            arqv_aluno.close()
-
-def checar_disc(cd):
-    global disciplinas, turmas
-    try:
-        arqv_disc = open("disciplinas.txt", "r", encoding = "utf-8")
-        for coddisc in disciplinas.readlines():
-            coddisc = coddisc.split(" :: ")[1]
-            if coddisc == cd:
-                return coddisc
-            arqv_disc.close()
-                 
-
-def new_turma(ct, pt, cd, cp, ca):
+cpfalunos = []
+def new_turma(ct, pt, cdd, cpp, caa):
     global turmas
     for a, b in enumerate(turmas):
         if b[0] == ct:
-            return False
-        turmas.append([ct, pt, cd, cp, ca])
-        return True
+            return Flase
+    turmas.append([ct, pt, cdd, cpp, caa])
+    cpfalunos.append([caa])
+    return True
 
-def att_turmas(ct):
+def att_turma(ct):
     global turmas
     for a, b in enumerate(turmas):
         if b[0] == ct:
             nc_turma = input("Novo código da turma: ")
-            np_turma = input("Novo período da turma: ").upper()
+            np_turma = input("Novo período da turma: ")
             ncd_turma = input("Novo código da disciplina: ")
             ncp_turma = input("Novo CPF do professor: ")
             nca_turma = input("Novo CPF do aluno: ")
@@ -68,18 +38,18 @@ def apaga_turma(ct):
 
 def list_turma():
     global turmas
-    print("     : TURMAS :\n")
+    print("     : LISTA DE TURMAS :\n")
     print(" ")
-    print("{0:10} {1:12} {2:12} {3:12} {4:12}".format("Número", "Código da Turma", "Período", "Código da Disciplina", "CPF do professor")) #organização
-    for a, b in enumerate(professores):
-        print("{0:0>5}      {1:12} {2:12} {3:12} {4:12}".format(str(a+1), b[0], b[1], b[2], b[3])) #formatar direitinho os espaçamentos. = resolvido
+    print("{0:10} {1:18} {2:21} {3:17} {4:22} {5:18}".format("Número", "Código/Turma", "Período", "Código/Disciplina", "CPF/Professor", "CPF/Aluno"))
+    for a, b in enumerate(turmas):
+        print("{0:0>5}      {1:18} {2:21} {3:17} {4:22} {5:18}".format(str(a+1), b[0], b[1], b[2], b[3], b[4]))
     print("="*70+"\n")
 
 def grava_turma():
     global turmas
     arqv_turma = open("turmas.txt", "w", encoding = "utf-8")
     for a, b in enumerate(turmas):
-        arqv_turma.write("Código: {} :: Período: {} :: Cód. da Disciplina: {} :: CPF/professor: {}\n".format(b[0], b[1], b[2], b[3], b[4]))
+        arqv_turma.write("Código/Turma: {} :: Período: {} :: Código/Disciplina: {} :: CPF/Professor: {} :: CPF/Aluno: {}\n".format(b[0], b[1], b[2], b[3], b[4]))
     arqv_turma.close()
 
 def lê_arquivo_turma():
@@ -88,3 +58,19 @@ def lê_arquivo_turma():
     for v in arqv_turma.readlines():
         print(v)
     arqv_turma.close()
+
+
+# ********* RELATÓRIOS *********
+
+def ata():
+    global turmas
+    coddisc = inputs.cod_disc()
+    codturm = inputs.cod_turma()
+
+    for v in turmas:
+        if codturm == v[0] and coddisc == v[2]:
+            print("Período: {}".format(v[1]))
+            print("Código/Turma: {}".formar(v[0]))
+            print("Código/Disciplina: {}".format(v[2]))
+            print("CPF do professor: {}".formar(v[3]))
+            print("CPF do aluno: {}".format(v[4]))

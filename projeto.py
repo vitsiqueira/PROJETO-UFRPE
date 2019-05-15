@@ -5,4 +5,6 @@ import inputs
 import professores
 import turmas
 
-menus.menu_principal()
+#IMPORT PARA IMPORTAR TODOS OS PROGRAMAS QUE SERÃO EXECUTADOS
+
+menus.menu_principal() #FUNÇÃO MENU PRINCIPAL QUE É O MENU PRINCIPAL DO PROGRAMA
